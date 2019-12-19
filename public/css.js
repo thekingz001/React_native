@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
       box: {
         backgroundColor: '#9dd7ef',
         //borderColor: 'gray',
-        height: 700,
+        height: '100%',
       },
       shadow: {
         shadowColor: '#000',

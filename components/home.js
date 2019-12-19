@@ -37,6 +37,12 @@ export default class Home extends Component {
         if (nameStore) {
           this.setState({ name: nameStore });
         }
+        if(this.state.name == 'null'){
+          console.log('null')
+          this.props.navigation.navigate('auth')
+        }
+        else{
+        }
       });
     } catch(e) {
       // getdata error
@@ -83,14 +89,6 @@ export default class Home extends Component {
   render() {
     const { location, loading } = this.state;
     this._get()
-
-    if(this.state.name == 'null'){
-      console.log('null')
-      this.props.navigation.navigate('auth')
-    }
-    else{
-      console.log('test1')
-    }
     return (
       <View style={styles.container}>
         <View style={styles.container}>

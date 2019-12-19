@@ -9,23 +9,54 @@ import {
 import styles from '../public/css';
 
 var state = [];
-const userinfo = { email: 'admin@admin', password: 'admin' };
+// const userinfo = { email: 'admin@admin', password: 'admin' };
 
 export default class Register extends Component {
   registerfuntion = async () => {
-    if (userinfo.email === this.state.email && userinfo.password === this.state.password) {
-      alert('Register');
-    }
-    else {
-      alert('No Register');
-    }
+    return fetch('http://192.168.1.11:8888/register', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.email,
+        name: this.state.name,
+        password: this.state.password,
+      })
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+          return;
+        }
+        // Examine the text in the response
+        response.json().then((data) => {
+          if (data.x == 'register') {
+            alert('Register');
+            this.props.navigation.navigate('auth')
+        }
+        else{
+            alert('No Register');
+            this.props.navigation.navigate('auth')
+        }
+        });
+      }
+      )
+      .catch(function (err) {
+        console.log('Fetch Error :-S', err);
+      })
+      .done();
   }
 
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      phone: '',
     }
   }
 
@@ -38,7 +69,6 @@ export default class Register extends Component {
         <View style={styles.ReginputContainer}>
           <TextInput style={styles.Reginputs}
             placeholder="Name"
-            keyboardType="name"
             underlineColorAndroid='transparent'
             onChangeText={(name) => this.setState({ name })}
             value={this.state.name} />
@@ -47,7 +77,6 @@ export default class Register extends Component {
         <View style={styles.ReginputContainer}>
           <TextInput style={styles.Reginputs}
             placeholder="Email"
-            keyboardType="email-address"
             underlineColorAndroid='transparent'
             onChangeText={(email) => this.setState({ email })}
             value={this.state.email} />
@@ -65,7 +94,6 @@ export default class Register extends Component {
         <View style={styles.ReginputContainer}>
           <TextInput style={styles.Reginputs}
             placeholder="Phone"
-            keyboardType="phone"
             underlineColorAndroid='transparent'
             onChangeText={(phone) => this.setState({ phone })}
             value={this.state.phone} />

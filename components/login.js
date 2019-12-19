@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     AsyncStorage,
     AppRegistry,
+    Image,
 } from 'react-native';
 
 import styles from '../public/css';
@@ -15,8 +16,8 @@ export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: 'Kan1',
-            password: '123456',
+            email: '',
+            password: '',
         }
     }
 
@@ -44,6 +45,7 @@ export default class Login extends Component {
                         alert('Login');
                         // console.log(data.name)
                         AsyncStorage.setItem('@MySuperStore:key', data.name);
+                        this.reset()
                         this.props.navigation.navigate('home')
                     }
                     else {
@@ -57,6 +59,13 @@ export default class Login extends Component {
             .done();
     }
 
+    reset() {
+        this.setState({
+            email: '',
+            password: '',
+        });
+    }
+
     render() {
         return (
             <View style={[styles.box, styles.container]}>
@@ -64,10 +73,11 @@ export default class Login extends Component {
                     <Text style={[styles.main, styles.textShadow]}>LOGIN</Text>
                 </View>
 
-                {/*<View style={styles.container}>
-                <Image style={styles.img}
-                    source={require('../public/images/logo2.png')} />
-                </View>*/}
+                <View style={styles.container}>
+                    <Image
+                        style={styles.img}
+                        source={require('../public/images/logo2.png')} />
+                </View>
 
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.inputs}
