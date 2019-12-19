@@ -5,14 +5,21 @@ import {
     TextInput,
     TouchableOpacity,
     AsyncStorage,
-    Image
+    AppRegistry,
 } from 'react-native';
 
 import styles from '../public/css';
-
-const userinfo = { email: 'admin@admin', password: 'admin' };
+import Home from './home';
 
 export default class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: 'Kan1',
+            password: '123456',
+        }
+    }
+
     loginfuntion = async () => {
         return fetch('http://192.168.1.11:8888/login', {
             method: 'POST',
@@ -35,11 +42,9 @@ export default class Login extends Component {
                 response.json().then((data) => {
                     if (data.type == 'login') {
                         alert('Login');
-                        AsyncStorage.setItem('islogin', "1")
-                        this.props.navigation.navigate('home', {
-                            user: data.user,
-                            name: data.name
-                        })
+                        // console.log(data.name)
+                        AsyncStorage.setItem('@MySuperStore:key', data.name);
+                        this.props.navigation.navigate('home')
                     }
                     else {
                         alert('No Login');
@@ -50,22 +55,6 @@ export default class Login extends Component {
                 console.log('Fetch Error :-S', err);
             })
             .done();
-    }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
-
-    checkBoxTest()
-    {
-        this.setState({
-            check:!this.state.check
-        })
-        alert("now value is "+ this.state.check)
     }
 
     render() {
@@ -86,7 +75,8 @@ export default class Login extends Component {
                         keyboardType="email-address"
                         underlineColorAndroid='transparent'
                         onChangeText={(email) => this.setState({ email })}
-                        value={this.state.email} />
+                        value={this.state.email}
+                        autoFocus={true} />
                 </View>
 
                 <View style={styles.inputContainer}>
@@ -105,7 +95,7 @@ export default class Login extends Component {
                 <TouchableOpacity style={[styles.buttonContainer, styles.loginButton, styles.shadow]} onPress={() => this.loginfuntion()}>
                     <Text style={styles.loginText}>LOGIN</Text>
                 </TouchableOpacity>
-                
+
                 <View>
                     <Text style={styles.signup}>Don't have an account? <Text style={styles.signupp} onPress={() => this.props.navigation.navigate('register')}> Sign up here!</Text></Text>
                 </View>
@@ -113,4 +103,4 @@ export default class Login extends Component {
         );
     }
 }
-
+AppRegistry.registerComponent('Login', () => Home);
