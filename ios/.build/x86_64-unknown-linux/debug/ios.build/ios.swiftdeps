@@ -1,0 +1,21 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ios"
+provides-nominal:
+- "3iosAAV"
+provides-member:
+- ["3iosAAV", ""]
+depends-top-level:
+- "StringLiteralType"
+- "ios"
+depends-member:
+- ["3iosAAV", "init"]
+- ["3iosAAV", "text"]
+depends-nominal:
+- "3iosAAV"
+depends-dynamic-lookup:
+depends-external:
+- "/home/new/Swift/usr/lib/swift/linux/x86_64/Swift.swiftmodule"
+- "/home/new/Swift/usr/lib/swift/linux/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/home/new/Swift/usr/lib/swift/linux/x86_64/glibc.modulemap"
+interface-hash: "4b72485986f0358faa4247a255620a4b"

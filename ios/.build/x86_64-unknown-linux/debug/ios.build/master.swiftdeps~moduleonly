@@ -1,0 +1,5 @@
+version: "Swift version 5.1.3 (swift-5.1.3-RELEASE)"
+options: "63e64bbe9b3422293df48853d490252a"
+build_time: [1576471558, 716981947]
+inputs:
+  "/home/new/test_air/ios/Sources/ios/ios.swift": [1576471533, 561629193]

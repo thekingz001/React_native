@@ -1,0 +1,108 @@
+client:
+  name: basic
+tools: {}
+targets:
+  "main": ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule","<ios-debug.module>"]
+  "test": ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.xctest","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule","<ios-debug.module>","<iosPackageTests-debug.test>","<iosTests-debug.module>"]
+  "ios-debug.module": ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule","<ios-debug.module>"]
+  "iosPackageTests-debug.module": ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.swiftmodule","<iosPackageTests-debug.module>"]
+  "iosPackageTests-debug.test": ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.xctest","<iosPackageTests-debug.test>"]
+  "iosTests-debug.module": ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule","<iosTests-debug.module>"]
+default: "main"
+commands: 
+  "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swiftmodule.o":
+    tool: shell
+    description: "Wrapping AST for ios for debugging"
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swiftmodule.o"]
+    args: ["/home/new/Swift/usr/bin/swiftc","-modulewrap","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule","-o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swiftmodule.o"]
+
+  "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/iosPackageTests.swiftmodule.o":
+    tool: shell
+    description: "Wrapping AST for iosPackageTests for debugging"
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.swiftmodule"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/iosPackageTests.swiftmodule.o"]
+    args: ["/home/new/Swift/usr/bin/swiftc","-modulewrap","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.swiftmodule","-o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/iosPackageTests.swiftmodule.o"]
+
+  "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swiftmodule.o":
+    tool: shell
+    description: "Wrapping AST for iosTests for debugging"
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swiftmodule.o"]
+    args: ["/home/new/Swift/usr/bin/swiftc","-modulewrap","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule","-o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swiftmodule.o"]
+
+  "<C.ios-debug.module>":
+    tool: phony
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule"]
+    outputs: ["<ios-debug.module>"]
+
+  "<C.iosPackageTests-debug.module>":
+    tool: phony
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.swiftmodule"]
+    outputs: ["<iosPackageTests-debug.module>"]
+
+  "<C.iosPackageTests-debug.test>":
+    tool: phony
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.xctest"]
+    outputs: ["<iosPackageTests-debug.test>"]
+
+  "<C.iosTests-debug.module>":
+    tool: phony
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule"]
+    outputs: ["<iosTests-debug.module>"]
+
+  "C.ios-debug.module":
+    tool: swift-compiler
+    executable: "/home/new/Swift/usr/bin/swiftc"
+    module-name: "ios"
+    module-output-path: "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule"
+    inputs: ["/home/new/test_air/ios/Sources/ios/ios.swift"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule"]
+    import-paths: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build"
+    objects: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swift.o"]
+    other-args: ["-target","x86_64-unknown-linux","-swift-version","5","-enable-batch-mode","-index-store-path","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/index/store","-sdk","/","-Onone","-g","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ModuleCache","-parseable-output","-Xfrontend","-color-diagnostics"]
+    sources: ["/home/new/test_air/ios/Sources/ios/ios.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
+  "C.iosPackageTests-debug.module":
+    tool: swift-compiler
+    executable: "/home/new/Swift/usr/bin/swiftc"
+    module-name: "iosPackageTests"
+    module-output-path: "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.swiftmodule"
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule","/home/new/test_air/ios/Tests/LinuxMain.swift"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/LinuxMain.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.swiftmodule"]
+    import-paths: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build"
+    objects: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/LinuxMain.swift.o"]
+    other-args: ["-target","x86_64-unknown-linux","-swift-version","5","-enable-batch-mode","-index-store-path","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/index/store","-sdk","/","-Onone","-g","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ModuleCache","-parseable-output","-Xfrontend","-color-diagnostics"]
+    sources: ["/home/new/test_air/ios/Tests/LinuxMain.swift"]
+    is-library: false
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
+  "C.iosPackageTests-debug.test":
+    tool: shell
+    description: "Linking ./.build/x86_64-unknown-linux/debug/iosPackageTests.xctest"
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.build/ios.swiftmodule.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/LinuxMain.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.build/iosPackageTests.swiftmodule.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/XCTestManifests.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swiftmodule.o"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.xctest"]
+    args: ["/home/new/Swift/usr/bin/swiftc","-sdk","/","-g","-L","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug","-o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.xctest","-module-name","iosPackageTests","-emit-executable","-Xlinker","-rpath=$ORIGIN","@/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosPackageTests.product/Objects.LinkFileList","-target","x86_64-unknown-linux","-L","/home/new/Swift/usr/lib"]
+
+  "C.iosTests-debug.module":
+    tool: swift-compiler
+    executable: "/home/new/Swift/usr/bin/swiftc"
+    module-name: "iosTests"
+    module-output-path: "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule"
+    inputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ios.swiftmodule","/home/new/test_air/ios/Tests/iosTests/XCTestManifests.swift","/home/new/test_air/ios/Tests/iosTests/iosTests.swift"]
+    outputs: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/XCTestManifests.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.swiftmodule"]
+    import-paths: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build"
+    objects: ["/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/XCTestManifests.swift.o","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/iosTests.build/iosTests.swift.o"]
+    other-args: ["-target","x86_64-unknown-linux","-swift-version","5","-enable-batch-mode","-index-store-path","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/index/store","-sdk","/","-Onone","-g","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/new/test_air/ios/.build/x86_64-unknown-linux/debug/ModuleCache","-parseable-output","-Xfrontend","-color-diagnostics"]
+    sources: ["/home/new/test_air/ios/Tests/iosTests/XCTestManifests.swift","/home/new/test_air/ios/Tests/iosTests/iosTests.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
