@@ -21,7 +21,7 @@ export default class Home extends Component {
   logout = async () => {
     try {
       await AsyncStorage.removeItem('@MySuperStore:key')
-    } catch(e) {
+    } catch (e) {
       // remove error
       console.log('Logout error.' + e)
     }
@@ -33,18 +33,18 @@ export default class Home extends Component {
   _get = async () => {
     try {
       AsyncStorage.getItem('@MySuperStore:key')
-      .then((nameStore) => {
-        if (nameStore) {
-          this.setState({ name: nameStore });
-        }
-        if(this.state.name == 'null'){
-          console.log('null')
-          this.props.navigation.navigate('auth')
-        }
-        else{
-        }
-      });
-    } catch(e) {
+        .then((nameStore) => {
+          if (nameStore) {
+            this.setState({ name: nameStore });
+          }
+          if (this.state.name == 'null') {
+            console.log('null')
+            this.props.navigation.navigate('auth')
+          }
+          else {
+          }
+        });
+    } catch (e) {
       // getdata error
       console.log('Error. =' + e)
     }
@@ -63,6 +63,7 @@ export default class Home extends Component {
           location,
           loading: false,
         });
+        this.savelog()
       })
       .catch(ex => {
         const { code, message } = ex;
@@ -84,6 +85,41 @@ export default class Home extends Component {
           loading: false,
         });
       });
+  }
+
+  savelog = async () => {
+    return fetch('http://192.168.1.11:8888/test', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        location: this.state.location
+      })
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+          return;
+        }
+        // Examine the text in the response
+        // response.json().then((data) => {
+        //   if (data.type == 'login') {
+        //     alert('Login');
+        //     this.reset()
+        //     this.props.navigation.navigate('home')
+        //   }
+        //   else {
+        //     alert('No Login');
+        //   }
+        // });
+      })
+      .catch(function (err) {
+        console.log('Fetch Error :-S', err);
+      })
+      .done();
   }
 
   render() {
