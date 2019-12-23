@@ -1208,10 +1208,6 @@
         "source": "/home/new/.gradle/caches/transforms-2/files-2.1/a76d69c9500acfbed01b19cd57a0ca43/res/layout/abc_action_menu_layout.xml"
     },
     {
-        "merged": "/home/new/test_air/android/app/build/intermediates/res/merged/debug/xml_file_provider_paths.xml.flat",
-        "source": "/home/new/test_air/node_modules/react-native-webview/android/build/intermediates/packaged_res/debug/xml/file_provider_paths.xml"
-    },
-    {
         "merged": "/home/new/test_air/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/home/new/.gradle/caches/transforms-2/files-2.1/a76d69c9500acfbed01b19cd57a0ca43/res/drawable-xxxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
